@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/dracula.css">
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1 class="r-fit-text">Regular Expressions</h1>
+            <img class="r-stretch r-frame" src="https://i.redd.it/j9eyqwsx62c61.png">
+            <p>Maria Bogdanova | <a href='https://rs.school/'>RS School</a> | 2023</p>
+        </section>
+        <section>
+            <section>
+                <h2>What REGEXP is?</h2>
+                <ul>
+                    <li>a powerful way to <b>search</b> and <b>replace</b> in text</li>
+                    <li>is used in main <b>programing languages</b></li>
+                    <li>in <b>compilers and interpreters</b> for lexical analysis and parsing of source code</li>
+                    <li>in <b>text editors</b> for text searching and replacing</li>
+                </ul>
+            </section>
+            <section>
+                <h2>REGEXP is used for</h2>
+                <ul>
+                    <li>search and replace text</li>
+                    <li>data validation</li>
+                    <li>data filtering</li>
+                    <li>formatting changes</li>
+                    <li>information extraction</li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>REGEXP in Java Script</h2>
+            </section>
+            <section>
+                <h3>Object <b>REGEXP</b></h3>
+
+                <div class="fragment">
+                    <p>Constructor function</p>
+                    <pre><code data-trim data-noescape>
+							const myRegex = new RegExp(pattern, flags)
+				</code></pre>
+                </div>
+
+                <div class="fragment">
+                    <p>Literal notation</p>
+                    <pre><code data-trim data-noescape>
+							const myRegexp = /pattern/flags
+				</code></pre>
+                </div>
+            </section>
+            <section>
+                <h3>Patterns</h3>
+                <p>the text of REGEXP</p>
+                <pre><code data-trim data-noescape>
+							const myRegexp = /text to find/
+				</code></pre>
+            </section>
+            <section>
+                <h3>Flags</h3>
+                <ul>
+                    <li><b>g</b> - all matches vs. the first match</li>
+                    <li><b>i</b> - case-insensitive search</li>
+                    <li><b>m</b> - multiline mode</li>
+                    <li><b>s</b> - dotAll mode</li>
+                    <li><b>u</b> - unicode</li>
+                    <li><b>y</b> - sticky</li>
+                </ul>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Methods</h2>
+                <p>integrated to string methods</p>
+            </section>
+            <section>
+                <h3>str.<b>match</b>(regexp)</h3>
+                <p>finds matches of regexp in a string</p>
+                <pre><code data-trim data-noescape>
+    let str = "We will, we will rock you"
+
+    str.match(/we/) // [we]
+    str.match(/we/i) // [We]
+    str.match(/we/gi) // [We, we]
+    str.matchAll(/we/gi) // We, we
+    str.match(/WE/) // null
+                </code></pre>
+            </section>
+            <section>
+                <h3>str.<b>search</b>(regexp)</h3>
+                <p>returns the position of the first match or -1 if none found</p>
+                <pre><code data-trim data-noescape>
+    let str = "We will, we will rock you"
+    str.search( /will/i ) // 3
+                </code></pre>
+            </section>
+            <section>
+                <h3>str.<b>replace</b>(regexp, replacement)</h3>
+                <p>replaces matches of regexp in a string with replacement</p>
+                <pre><code data-trim data-noescape>
+    let str = "We will, we will rock you"
+
+    str.replace(/we/i, "I") // "I will, we will rock you"
+    str.replace(/we/gi, "I") // "I will, I will rock you"
+    str.replaceAll(/we/i, "I") // "I will, I will rock you"
+
+                </code></pre>
+            </section>
+            <section>
+                <h3>regexp.<b>test</b>(str)</h3>
+                <p>looks for at least one match, if found, returns true, otherwise false</p>
+                <pre><code data-trim data-noescape>
+    let str = "We will, we will rock you"
+
+    str.test(/we/) // true
+                </code></pre>
+            </section>
+            <section>
+                <h3>str.<b>split</b>(regexp|substr, limit)</h3>
+                <p>splits the string using the regexp as a delimiter</p>
+                <pre><code data-trim data-noescape>
+    '12, 34, 56'.split(/,\s*/) // ['12', '34', '56']
+                </code></pre>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Useful features</h2>
+                <ul>
+                    <li>Character classes</li>
+                    <li>Anchors</li>
+                    <li>Sets and ranges</li>
+                    <li>Quantifiers</li>
+                    <li>Capturing groups</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Character classes</h2>
+                <pre><code data-trim data-noescape>
+   let time = "Exact time: 12:34"
+   let regexp = /\d\d:\d\d/
+   time.match(regexp) // 12:34
+            </code></pre>
+                <ul>
+                    <li><b>\d</b> - digit [0-9]</li>
+                    <li><b>\D</b> - not digit</li>
+                    <li><b>\s</b> - space [\t\n\v\f\r ]</li>
+                    <li><b>\S</b> - not space</li>
+                    <li><b>\w</b> - letter, digit or underscore [a-zA-Z0-9_]</li>
+                    <li><b>\W</b> - not letter, not digit, not underscore</li>
+                    <li><b>\.</b> - any character except a newline</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Anchors</h2>
+                <ul>
+                    <li>^ - matches at the beginning of the text</li>
+                    <li>$ – matches at the end</li>
+                </ul>
+                <pre><code data-trim data-noescape>
+   let str = `We will,
+              we will rock you`
+   /^We/.test(str) // true
+   /you$/.test(str) // true
+   /^we/gim.test(str) // true
+            </code></pre>
+            </section>
+            <section>
+                <h2>Sets and ranges</h2>
+                <p>searching for any character among given in [ ] or except the given ones</p>
+                <pre><code data-trim data-noescape>
+    'Mop top'.match(/[tm]op/gi) // 'Mop', 'top'
+    'Exception 0xAF'.match(/x[0-9A-F][0-9A-F]/g) // xAF
+    'mashabogdanoff@gmail.com'.match(/[^\d\A-Z]/gi) // @ и .
+            </code></pre>
+            </section>
+            <section>
+                <h2>Quantifiers</h2>
+                <p>marking how many symbols we need</p>
+                <ul>
+                    <li>+ = {1,}</li>
+                    <li>? = {0,1}</li>
+                    <li>* = {0,}</li>
+                </ul>
+                <pre><code data-trim data-noescape>
+   "I'm 12345 years old".match(/\d{5}/) // 12345
+   "I'm not 12, but 1234 years old".match(/\d{3,5}/) // 1234
+   '+7(903)-123-45-67'.match(/\d{1,}/g) // 7,903,123,45,67
+            </code></pre>
+            </section>
+            <section>
+                <h2>Alternation</h2>
+                <pre><code data-trim data-noescape>
+                    let regexp = /html|php|css|java(script)?/gi
+                    'First HTML appeared, then CSS, then JavaScript'.match(regexp) // HTML, CSS, JavaScript
+                </code></pre>
+            </section>
+            <section>
+                <h2>Capturing groups</h2>
+                <p>if we put a quantifier after the parentheses, it applies to the parentheses as a whole</p>
+                <pre><code data-trim data-noescape>
+                    let regexp = /[-.\w]+@([\w-]+\.)+[\w-]+/g
+                    'my@mail.com @ his@site.com.uk'.match(regexp) // my@mail.com, his@site.com.uk
+                </code></pre>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>Pros and cons</h2>
+                <ul>
+                    <li>+ allows to find patterns</li>
+                    <li>+ powerful and flexible tool</li>
+                    <li>+ performance improvement</li>
+                    <li>- difficult to learn and understand</li>
+                    <li>- error-prone</li>
+                </ul><br>
+                <img class="r-stretch r-frame"
+                     src="https://i.pinimg.com/originals/da/6b/67/da6b671649885f891ab21d8d347b78e7.jpg">
+            </section>
+            <section>
+                <h1>Thank you</h1>
+            </section>
+            <section>
+                <h3>List of sources</h3>
+                <ul>
+                    <li><a href="https://javascript.info/regular-expressions">javascript.info</a></li>
+                    <li>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp">developer.mozilla.org</a>
+                    </li>
+                    <li><a href="https://learn.microsoft.com/ru-ru/previous-versions/101eysae(v=vs.100)">learn.microsoft.com</a>
+                    </li>
+                    <li><a href="https://www.regular-expressions.info/">regular-expressions.info</a></li>
+                </ul>
+            </section>
+        </section>
+    </div>
+</div>
+
+<script src="dist/reveal.js"></script>
+<script src="plugin/notes/notes.js"></script>
+<script src="plugin/markdown/markdown.js"></script>
+<script src="plugin/highlight/highlight.js"></script>
+<script>
+    Reveal.initialize({
+        hash: true,
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+        slideNumber: 'c/t'
+    });
+</script>
+</body>
+</html>
